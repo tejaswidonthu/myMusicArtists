@@ -1,23 +1,45 @@
 <div class="row">
     <div class="col-xs-12">
-        <h1>{{artName}}</h1>
+        <h3><b>Artists Information</b></h3>
     </div>
-</div><br>
-<div class="row">
-    <div class="col-xs-12"><span><b>Summary : </b></span>{{artSummary}}</div>
-</div><br>
-<div class="row">
-   <div class="col-xs-12"> <span><b>Listeners : </b></span>{{artListeners}}</div>
-</div><br>
-<div class="row">
-   <div class="col-xs-12"> <span><b>Playcount : </b></span>{{artPlaycount}}</div>
-</div><br>
-<div class="row">
-   <div class="col-xs-12"><span><b>URL : </b></span><a href={{artUrl}}>{{artUrl}}</a></div>
-</div><br><br>
-<div class="row">
-    <div class="col-xs-12"><span><b>Top Albums : </b></span>{{artAlbums}}</div>
-</div><br><br>
-<div class="row">
-    <div class="col-xs-12"><span><b>Top Tracks : </b></span>{{artTracks}}</div>
-</div><br>
+</div>
+<hr>
+<div class="main" style="border: silver solid 1px;padding: 20px;">
+    <div class="error" *ngIf="error">
+        <p>{{errorMessage}}</p>
+    </div>
+    <div *ngIf="!error">
+        <div class="row">
+            <div class="pull-left">
+                <div class="col-xs-12">
+                    <h1>{{artName}}</h1>
+                </div><br>
+                <div class="col-xs-12"> <span><b>Listeners : </b></span>{{artListeners}}</div><br>
+                <div class="col-xs-12"> <span><b>Playcount : </b></span>{{artPlaycount}}</div><br>
+            </div>
+            <span class="pull-right">
+                <img [src]="imgData" alt="{{artName}}" class="img-responsive" style="max-height: 150px;">
+            </span>
+        </div><br>
+        <div class="row">
+            <div class="col-xs-12"><span><b>Summary : </b></span>{{artSummary}}</div>
+        </div><br>
+        <div class="row">
+            <div class="col-xs-12"><span><b>URL : </b></span><a href={{artUrl}}>{{artUrl}}</a></div>
+        </div><br><br>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="pull-left"><span><b>Top Albums : </b></span><br><br>
+                    <ul *ngFor="let albumEl of artAlbums">
+                        <li>{{albumEl}}</li><br>
+                    </ul>
+                </div>
+                <div class="pull-right"><span><b>Top Tracks : </b></span><br><br>
+                    <ul *ngFor="let trackEl of artTracks">
+                        <li>{{trackEl}}</li><br>
+                    </ul>
+                </div>
+            </div>
+        </div><br><br>
+    </div>
+</div>

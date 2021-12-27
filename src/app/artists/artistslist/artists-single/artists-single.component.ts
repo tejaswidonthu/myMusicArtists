@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+
 import { Artist } from '../../artist.model';
 
 @Component({
@@ -7,10 +8,10 @@ import { Artist } from '../../artist.model';
   styleUrls: ['./artists-single.component.css']
 })
 export class ArtistsSingleComponent implements OnInit {
-@Input() artist : Artist;
-@Input() index : string;
-data : any;
-imgData : any;
+  @Input() artist: Artist;
+  @Input() index: string;
+  data: any;
+  imgData: any;
   constructor() { }
 
   ngOnInit(): void {

@@ -1,32 +1,4 @@
-<!-- <nav class="navbar navbar-default">
-    <div class="row">
-        <div class="col-xs-12" style="background: rgb(121, 210, 252);">
-            <ul>
-                <li>
-                    <span class="navbar-brand">
-                        <b>MUSIC ARTISTS</b></span>
-                </li>
-                <li routerLinkActive="active">
-                    <a title="Home" routerLink="/home">
-                        <span id="title">HOME</span></a>
-                </li>
-                <li routerLinkActive="active" class="dropdown" appDropdown >
-                    <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span
-                            class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a style="cursor: pointer;">Save Data</a></li>
-                        <li><a style="cursor: pointer;">Fetch Data</a></li>
-                    </ul>
-                </li>
-                <li routerLinkActive="active">
-                    <a title="side-by-side" routerLink="/side-by-side">
-                        <span id="title">SIDE-BY-SIDE</span></a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <app-artistslist></app-artistslist>
-</nav> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -35,20 +7,25 @@
         </div>
         <div class="navbar-default">
             <ul class="nav navbar-nav">
-                <li routerLinkActive="active"><a routerLink="/artists">Artists</a></li>  
-                <li routerLinkActive="active" class="dropdown" appDropdown >
+                <li routerLinkActive="active" class="dropdown" appDropdown>
                     <a style="cursor: pointer;" class="dropdown-toggle" role="button">{{selectedCountry}}<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a style="cursor: pointer;" routerLinkActive="active" routerLink="/germany" (click)="onClick('Germany')">Germany</a></li>
-                        <li><a style="cursor: pointer;" routerLinkActive="active" routerLink="/spain" (click)="onClick('Spain')">Spain</a></li>
-                        <li><a style="cursor: pointer;" routerLinkActive="active" routerLink="/india" (click)="onClick('India')">India</a></li>
+                        <li><a style="cursor: pointer;" routerLinkActive="active" routerLink="/germany"
+                                (click)="onClick('Germany')">Germany</a></li>
+                        <li><a style="cursor: pointer;" routerLinkActive="active" routerLink="/spain"
+                                (click)="onClick('Spain')">Spain</a></li>
+                        <li><a style="cursor: pointer;" routerLinkActive="active" routerLink="/india"
+                                (click)="onClick('India')">India</a></li>
                     </ul>
                 </li>
                 <li routerLinkActive="active">
                     <a title="side-by-side" routerLink="/side-by-side">
                         <span id="title">SIDE-BY-SIDE</span></a>
                 </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <app-search [artistNames]="dataset"></app-search>
             </ul>
         </div>
     </div>

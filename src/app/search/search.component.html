@@ -1,0 +1,15 @@
+<div class="main">
+    <li>
+        <input type="search" [(ngModel)]="searchText" placeholder="Search artist" (keyup)="onChangeEvent()">
+        <button type="submit" [routerLink]="[searchText]" (click)="onSearchClose()"><i
+                class="fa fa-search"></i></button>
+        <div class="search" *ngIf="isSearchShow">
+            <ul *ngFor="let data of artistNames | filter: searchText">
+                <div>
+                    <li><a style="cursor: pointer;" routerLinkActive="active" [routerLink]="[data]"
+                            (click)="onSearchClose()">{{data}}</a></li>
+                </div>
+            </ul>
+        </div>
+    </li>
+</div>

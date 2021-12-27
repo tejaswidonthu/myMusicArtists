@@ -12,6 +12,9 @@ import { ArtistsComponent } from './artists/artists.component';
 import { ArtistsSingleComponent } from './artists/artistslist/artists-single/artists-single.component';
 import { ArtistsStartComponent } from './artists/artists-start/artists-start.component';
 import { ArtistsDetailComponent } from './artists/artists-detail/artists-detail.component';
+import { FilterPipe } from './filter.pipe';
+import { SearchComponent } from './search/search.component';
+import { ArtistSidebysideComponent } from './artists/artist-sidebyside/artist-sidebyside.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { ArtistsDetailComponent } from './artists/artists-detail/artists-detail.
     ArtistsComponent,
     ArtistsSingleComponent,
     ArtistsStartComponent,
-    ArtistsDetailComponent
+    ArtistsDetailComponent,
+    FilterPipe,
+    SearchComponent,
+    ArtistSidebysideComponent
   ],
   imports: [
     BrowserModule,

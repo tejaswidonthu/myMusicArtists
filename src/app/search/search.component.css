@@ -1,0 +1,17 @@
+.main{
+    max-height: 200px;
+}
+
+.search{
+    position: fixed; 
+    overflow-y: scroll;
+    max-height: 200px;
+    z-index: 100;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0,0.26);
+}
+
+.search-actions{
+    text-align: right;
+}
+
