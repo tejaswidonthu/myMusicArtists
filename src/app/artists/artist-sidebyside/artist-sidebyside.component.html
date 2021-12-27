@@ -1,17 +1,15 @@
 <div class="row">
     <div class="column">
         <div class="main">
-           <ul><li>
-                <input type="search" [(ngModel)]="searchText1" placeholder="Search artist" (keyup)="onChangeEvent1()">
-                <button type="submit" (click)="onSearchClose1()"><i class="fa fa-search"></i></button>
-                <div class="search" *ngIf="isSearchShow1">
-                    <ul *ngFor="let data of artistNames | filter: searchText1">
-                        <div>
-                            <li><a style="cursor: pointer;" (click)="setLeftArtist(data)">{{data}}</a></li>
-                        </div>
-                    </ul>
-                </div>
-            </li></ul> 
+            <input type="search" [(ngModel)]="searchText1" placeholder="Search artist" (keyup)="onChangeEvent1()">
+            <button type="submit" (click)="onSearchClose1()"><i class="fa fa-search"></i></button>
+            <div class="search" *ngIf="isSearchShow1">
+                <ul *ngFor="let data of artistNames | filter: searchText1">
+                    <div>
+                        <li><a style="cursor: pointer;" (click)="setLeftArtist(data)">{{data}}</a></li>
+                    </div>
+                </ul>
+            </div>
         </div>
         <div class="artist-left" *ngIf="showLeftDetails">
             <div class="error" *ngIf="error1">
@@ -32,7 +30,7 @@
                 </div><br>
                 <div class="row">
                     <div class="col-xs-12"><span><b>Summary : </b></span>{{artSummary1}}</div>
-                </div><br>                
+                </div><br>
                 <div class="row">
                     <div class="col-xs-12"><span><b>URL : </b></span><a href={{artUrl}}>{{artUrl1}}</a></div>
                 </div><br><br>
@@ -55,17 +53,15 @@
     </div>
     <div class="column">
         <div class="main">
-            <ul><li>
-                <input type="search" [(ngModel)]="searchText2" placeholder="Search artist" (keyup)="onChangeEvent2()">
-                <button type="submit" (click)="onSearchClose2()"><i class="fa fa-search"></i></button>
-                <div class="search" *ngIf="isSearchShow2">
-                    <ul *ngFor="let data of artistNames | filter: searchText2">
-                        <div>
-                            <li><a style="cursor: pointer;" (click)="setRightArtist(data)">{{data}}</a></li>
-                        </div>
-                    </ul>
-                </div>
-            </li></ul>
+            <input type="search" [(ngModel)]="searchText2" placeholder="Search artist" (keyup)="onChangeEvent2()">
+            <button type="submit" (click)="onSearchClose2()"><i class="fa fa-search"></i></button>
+            <div class="search" *ngIf="isSearchShow2">
+                <ul *ngFor="let data of artistNames | filter: searchText2">
+                    <div>
+                        <li><a style="cursor: pointer;" (click)="setRightArtist(data)">{{data}}</a></li>
+                    </div>
+                </ul>
+            </div>
         </div>
         <div class="artist-right" *ngIf="showRightDetails">
             <div class="error" *ngIf="error2">
@@ -86,7 +82,7 @@
                 </div><br>
                 <div class="row">
                     <div class="col-xs-12"><span><b>Summary : </b></span>{{artSummary2}}</div>
-                </div><br>               
+                </div><br>
                 <div class="row">
                     <div class="col-xs-12"><span><b>URL : </b></span><a href={{artUrl2}}>{{artUrl2}}</a></div>
                 </div><br><br>
