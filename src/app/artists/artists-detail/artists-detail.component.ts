@@ -24,6 +24,8 @@ export class ArtistsDetailComponent implements OnInit {
   errorMessage = "";
   subscription: Subscription;
   imgData: any;
+  isLoading = false;
+
   constructor(private artistService: ArtistsService,
     private route: ActivatedRoute) { }
 
@@ -31,8 +33,9 @@ export class ArtistsDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(
       (params: Params) => {
+        this.isLoading = true;
         this.idname = params['id'];
-        this.subscription = this.artistService.getArtist(this.idname).subscribe(
+        this.subscription = this.artistService.getArtist(this.idname).subscribe( /* Subscription to get specific artist details function */
           (data) => {
             if (!data['error']) {
               this.error = false;
@@ -44,7 +47,7 @@ export class ArtistsDetailComponent implements OnInit {
           }
         );
 
-        this.subscription = this.artistService.getTopAlbums(this.idname).subscribe(
+        this.subscription = this.artistService.getTopAlbums(this.idname).subscribe( /* Subscription to get specific artist Top Albums function */
           (data) => {
             if (!data['error']) {
               this.error = false;
@@ -53,8 +56,8 @@ export class ArtistsDetailComponent implements OnInit {
               const albumList = [];
               for (let ar of albumNames) {
                 let name: string = ar['name'];
-                let count : string = ar['playcount'];
-                let data : string = name + "     (" + count +")";
+                let count: string = ar['playcount'];
+                let data: string = name + "     (" + count + ")";
                 albumList.push(data);
               }
               this.artAlbums = albumList;
@@ -62,10 +65,11 @@ export class ArtistsDetailComponent implements OnInit {
               this.error = true;
               this.errorMessage = data['message'];
             }
+            this.isLoading = false;
           }
         );
 
-        this.subscription = this.artistService.getTopTracks(this.idname).subscribe(
+        this.subscription = this.artistService.getTopTracks(this.idname).subscribe( /* Subscription to get specific artist Top Tracks function */
           (data) => {
             if (!data['error']) {
               this.error = false;
@@ -74,8 +78,8 @@ export class ArtistsDetailComponent implements OnInit {
               const trackList = [];
               for (let ar of trackNames) {
                 let name: string = ar['name'];
-                let count : string = ar['playcount'];
-                let data : string = name + "     (" + count +")";
+                let count: string = ar['playcount'];
+                let data: string = name + "     (" + count + ")";
                 trackList.push(data);
               }
               this.artTracks = trackList;

@@ -12,12 +12,9 @@ import { ArtistsService } from 'src/app/shared/artists.service';
 export class ArtistSidebysideComponent implements OnInit {
   artistNames = [];
   subscription: Subscription;
-  searchText1 = ""
-  searchText2 = ""
+  searchText1 = "";
   isSearchShow1 = false;
-  isSearchShow2 = false;
   showLeftDetails = false;
-  showRightDetails = false;
   artName1: string;
   artSummary1: string;
   artListeners1: string;
@@ -27,6 +24,12 @@ export class ArtistSidebysideComponent implements OnInit {
   artTracks1: string[];
   error1 = false;
   errorMessage1 = "";
+  imgData1: any;
+  isLoading1 = false;
+
+  searchText2 = "";
+  isSearchShow2 = false;
+  showRightDetails = false;
   artName2: string;
   artSummary2: string;
   artListeners2: string;
@@ -36,21 +39,21 @@ export class ArtistSidebysideComponent implements OnInit {
   artTracks2: string[];
   error2 = false;
   errorMessage2 = "";
-  imgData1: any;
   imgData2: any;
+  isLoading2 = false;
 
   @HostBinding('class.open') isOpen = false;
 
   constructor(private elRef: ElementRef,
     private artistsService: ArtistsService) { }
 
-  @HostListener('document:click', ['$event']) toggleOpen(event: Event) {
+  @HostListener('document:click', ['$event']) toggleOpen(event: Event) { /* Function to close search bar */
     this.isSearchShow1 = false;
     this.isSearchShow2 = false;
   }
 
   ngOnInit(): void {
-    this.subscription = this.artistsService.getTopArtistsNames().subscribe(
+    this.subscription = this.artistsService.getTopArtistsNames().subscribe(  /* Subscription to get top artists function */
       (data) => {
         if (!data['error']) {
           const articles = data['artists'];
@@ -63,7 +66,7 @@ export class ArtistSidebysideComponent implements OnInit {
           this.artistNames = artistList;
         } else {
           alert(data['message']);
-        }        
+        }
       }
     );
   }
@@ -87,7 +90,8 @@ export class ArtistSidebysideComponent implements OnInit {
   }
 
   setLeftArtist(data: any) {
-    this.subscription = this.artistsService.getArtist(data).subscribe(
+    this.isLoading1 = true;
+    this.subscription = this.artistsService.getArtist(data).subscribe(  /* Subscription to get specific artist details function */
       (data) => {
         if (!data['error']) {
           this.error1 = false;
@@ -99,7 +103,7 @@ export class ArtistSidebysideComponent implements OnInit {
       }
     );
 
-    this.subscription = this.artistsService.getTopAlbums(this.searchText1).subscribe(
+    this.subscription = this.artistsService.getTopAlbums(this.searchText1).subscribe(  /* Subscription to get specific artist Top Albums function */
       (data) => {
         if (!data['error']) {
           this.error1 = false;
@@ -108,8 +112,8 @@ export class ArtistSidebysideComponent implements OnInit {
           const albumList = [];
           for (let ar of albumNames) {
             let name: string = ar['name'];
-            let count : string = ar['playcount'];
-            let data : string = name + "     (" + count +")";
+            let count: string = ar['playcount'];
+            let data: string = name + "     (" + count + ")";
             albumList.push(data);
           }
           this.artAlbums1 = albumList;
@@ -117,10 +121,11 @@ export class ArtistSidebysideComponent implements OnInit {
           this.error1 = true;
           this.errorMessage1 = data['message'];
         }
+        this.isLoading1 = false;
       }
     );
 
-    this.subscription = this.artistsService.getTopTracks(this.searchText1).subscribe(
+    this.subscription = this.artistsService.getTopTracks(this.searchText1).subscribe(  /* Subscription to get specific artist Top Tracks function */
       (data) => {
         if (!data['error']) {
           this.error1 = false;
@@ -129,8 +134,8 @@ export class ArtistSidebysideComponent implements OnInit {
           const trackList = [];
           for (let ar of trackNames) {
             let name: string = ar['name'];
-            let count : string = ar['playcount'];
-            let data : string = name + "     (" + count +")";
+            let count: string = ar['playcount'];
+            let data: string = name + "     (" + count + ")";
             trackList.push(data);
           }
           this.artTracks1 = trackList;
@@ -147,7 +152,7 @@ export class ArtistSidebysideComponent implements OnInit {
   setArtistInfoLeft(data: any) {
     const dataset = data['artist'];
     const bio = dataset['bio'];
-    const stats = dataset['stats']; 
+    const stats = dataset['stats'];
     const imaarrdata = dataset['image'];
     const singleImg = imaarrdata[4];
     this.imgData1 = singleImg['#text'];
@@ -160,7 +165,8 @@ export class ArtistSidebysideComponent implements OnInit {
   }
 
   setRightArtist(data: any) {
-    this.subscription = this.artistsService.getArtist(data).subscribe(
+    this.isLoading2 = true;
+    this.subscription = this.artistsService.getArtist(data).subscribe( /* Subscription to get specific artist details function */
       (data) => {
         if (!data['error']) {
           this.error2 = false;
@@ -172,7 +178,7 @@ export class ArtistSidebysideComponent implements OnInit {
       }
     );
 
-    this.subscription = this.artistsService.getTopAlbums(this.searchText2).subscribe(
+    this.subscription = this.artistsService.getTopAlbums(this.searchText2).subscribe( /* Subscription to get specific artist Top Albums function */
       (data) => {
         if (!data['error']) {
           this.error2 = false;
@@ -181,8 +187,8 @@ export class ArtistSidebysideComponent implements OnInit {
           const albumList = [];
           for (let ar of albumNames) {
             let name: string = ar['name'];
-            let count : string = ar['playcount'];
-            let data : string = name + "     (" + count +")";
+            let count: string = ar['playcount'];
+            let data: string = name + "     (" + count + ")";
             albumList.push(data);
           }
           this.artAlbums2 = albumList;
@@ -190,10 +196,11 @@ export class ArtistSidebysideComponent implements OnInit {
           this.error2 = true;
           this.errorMessage2 = data['message'];
         }
+        this.isLoading2 = false;
       }
     );
 
-    this.subscription = this.artistsService.getTopTracks(this.searchText2).subscribe(
+    this.subscription = this.artistsService.getTopTracks(this.searchText2).subscribe( /* Subscription to get specific artist Top Tracks function */
       (data) => {
         if (!data['error']) {
           this.error2 = false;
@@ -202,8 +209,8 @@ export class ArtistSidebysideComponent implements OnInit {
           const trackList = [];
           for (let ar of trackNames) {
             let name: string = ar['name'];
-            let count : string = ar['playcount'];
-            let data : string = name + "     (" + count +")";
+            let count: string = ar['playcount'];
+            let data: string = name + "     (" + count + ")";
             trackList.push(data);
           }
           this.artTracks2 = trackList;

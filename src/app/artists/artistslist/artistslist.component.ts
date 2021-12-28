@@ -20,21 +20,21 @@ export class ArtistslistComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.subscription = this.artistsService.getArtists().subscribe(
+    this.subscription = this.artistsService.getArtists().subscribe( /* Subscription to get Top Artists details from selected Region function */
       (data) => {
         if (!data['error']) {
-        const articles = data['topartists'];
-        this.artists = articles['artist'];
-        const artistList = [];
-        for (let ar of this.artists) {
-          let wkday: string = ar['name'];
-          artistList.push(wkday);
+          const articles = data['topartists'];
+          this.artists = articles['artist'];
+          const artistList = [];
+          for (let ar of this.artists) {
+            let wkday: string = ar['name'];
+            artistList.push(wkday);
+          }
+          this.artistsService.artistsNames = artistList;
+          this.artistsService.artists = this.artists;
+        } else {
+          alert(data['message']);
         }
-        this.artistsService.artistsNames = artistList;
-        this.artistsService.artists = this.artists;
-      }else {
-        alert(data['message']);
-      }
       }
     );
   }

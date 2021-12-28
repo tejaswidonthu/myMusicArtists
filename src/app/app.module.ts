@@ -15,6 +15,7 @@ import { ArtistsDetailComponent } from './artists/artists-detail/artists-detail.
 import { FilterPipe } from './filter.pipe';
 import { SearchComponent } from './search/search.component';
 import { ArtistSidebysideComponent } from './artists/artist-sidebyside/artist-sidebyside.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ArtistSidebysideComponent } from './artists/artist-sidebyside/artist-si
     ArtistsDetailComponent,
     FilterPipe,
     SearchComponent,
-    ArtistSidebysideComponent
+    ArtistSidebysideComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

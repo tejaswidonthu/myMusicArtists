@@ -6,7 +6,7 @@
 <hr>
 <div class="row">
     <div class="col-xs-12">
-        <app-artists-single *ngFor="let artistEl of artists;let i=index" [artist]="artistEl" [index]="artistEl.name">
+        <app-artists-single *ngFor="let artistEl of artists;let i=index" [artist]="artistEl" [index]="artistEl.name"> <!--Artists List with router link assigning-->
         </app-artists-single>
     </div>
 </div>

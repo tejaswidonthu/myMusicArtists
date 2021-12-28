@@ -20,21 +20,21 @@ export class HeaderComponent implements OnInit {
   constructor(private artistsService: ArtistsService) { }
 
   ngOnInit(): void {
-    this.subscription = this.artistsService.getTopArtistsNames().subscribe(
+    this.subscription = this.artistsService.getTopArtistsNames().subscribe( /* Subscription to get Top Artists function */
       (data) => {
         if (!data['error']) {
-        const articles = data['artists'];
-        let artists: any[] = articles['artist'];
-        const artistList = [];
-        for (let ar of artists) {
-          let wkday: string = ar['name'];
-          artistList.push(wkday);
+          const articles = data['artists'];
+          let artists: any[] = articles['artist'];
+          const artistList = [];
+          for (let ar of artists) {
+            let wkday: string = ar['name'];
+            artistList.push(wkday);
+          }
+          this.dataset = artistList;
+          this.artistsService.artistsNames = artistList;
+        } else {
+          alert(data['message']);
         }
-        this.dataset = artistList;
-        this.artistsService.artistsNames = artistList;
-      }else{
-        alert(data['message']);
-      }
       }
     );
   }

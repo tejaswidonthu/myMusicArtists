@@ -1,6 +1,6 @@
 <div class="row">
     <div class="column">
-        <div class="main">
+        <div class="main"> <!-- Left side search bar -->
             <input type="search" [(ngModel)]="searchText1" placeholder="Search artist" (keyup)="onChangeEvent1()">
             <button type="submit" (click)="onSearchClose1()"><i class="fa fa-search"></i></button>
             <div class="search" *ngIf="isSearchShow1">
@@ -11,48 +11,53 @@
                 </ul>
             </div>
         </div>
-        <div class="artist-left" *ngIf="showLeftDetails">
-            <div class="error" *ngIf="error1">
-                <p>{{errorMessage1}}</p>
-            </div>
-            <div *ngIf="!error1">
-                <div class="row">
-                    <div class="pull-left">
+        <div *ngIf="isLoading1" style="text-align: center;"> <!-- Spinner while data retrieving from API -->
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+        <div *ngIf="!isLoading1"> <!-- Left side Artist details panel -->
+            <div class="artist-left" *ngIf="showLeftDetails">
+                <div class="error" *ngIf="error1">
+                    <p>{{errorMessage1}}</p>
+                </div>
+                <div *ngIf="!error1">
+                    <div class="row">
+                        <div class="pull-left">
+                            <div class="col-xs-12">
+                                <h1>{{artName1}}</h1>
+                            </div><br>
+                            <div class="col-xs-12"> <span><b>Listeners : </b></span>{{artListeners1}}</div><br>
+                            <div class="col-xs-12"> <span><b>Playcount : </b></span>{{artPlaycount1}}</div><br>
+                        </div>
+                        <span class="pull-right">
+                            <img [src]="imgData1" alt="{{artName1}}" class="img-responsive" style="max-height: 150px;">
+                        </span>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-xs-12"><span><b>Summary : </b></span>{{artSummary1}}</div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-xs-12"><span><b>URL : </b></span><a href={{artUrl}}>{{artUrl1}}</a></div>
+                    </div><br><br>
+                    <div class="row">
                         <div class="col-xs-12">
-                            <h1>{{artName1}}</h1>
-                        </div><br>
-                        <div class="col-xs-12"> <span><b>Listeners : </b></span>{{artListeners1}}</div><br>
-                        <div class="col-xs-12"> <span><b>Playcount : </b></span>{{artPlaycount1}}</div><br>
-                    </div>
-                    <span class="pull-right">
-                        <img [src]="imgData1" alt="{{artName1}}" class="img-responsive" style="max-height: 150px;">
-                    </span>
-                </div><br>
-                <div class="row">
-                    <div class="col-xs-12"><span><b>Summary : </b></span>{{artSummary1}}</div>
-                </div><br>
-                <div class="row">
-                    <div class="col-xs-12"><span><b>URL : </b></span><a href={{artUrl}}>{{artUrl1}}</a></div>
-                </div><br><br>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div><span><b>Top Albums : </b></span><br><br>
-                            <ul *ngFor="let albumEl of artAlbums1">
-                                <li>{{albumEl}}</li><br>
-                            </ul>
+                            <div><span><b>Top Albums : </b></span><br><br>
+                                <ul *ngFor="let albumEl of artAlbums1">
+                                    <li>{{albumEl}}</li><br>
+                                </ul>
+                            </div>
+                            <div><span><b>Top Tracks : </b></span><br><br>
+                                <ul *ngFor="let trackEl of artTracks1">
+                                    <li>{{trackEl}}</li><br>
+                                </ul>
+                            </div>
                         </div>
-                        <div><span><b>Top Tracks : </b></span><br><br>
-                            <ul *ngFor="let trackEl of artTracks1">
-                                <li>{{trackEl}}</li><br>
-                            </ul>
-                        </div>
-                    </div>
-                </div><br><br>
+                    </div><br><br>
+                </div>
             </div>
         </div>
     </div>
     <div class="column">
-        <div class="main">
+        <div class="main"> <!-- Right side search bar -->
             <input type="search" [(ngModel)]="searchText2" placeholder="Search artist" (keyup)="onChangeEvent2()">
             <button type="submit" (click)="onSearchClose2()"><i class="fa fa-search"></i></button>
             <div class="search" *ngIf="isSearchShow2">
@@ -63,43 +68,48 @@
                 </ul>
             </div>
         </div>
-        <div class="artist-right" *ngIf="showRightDetails">
-            <div class="error" *ngIf="error2">
-                <p>{{errorMessage2}}</p>
-            </div>
-            <div *ngIf="!error2">
-                <div class="row">
-                    <div class="pull-left">
+        <div *ngIf="isLoading2" style="text-align: center;"> <!-- Spinner while data retrieving from API -->
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+        <div *ngIf="!isLoading2"> <!-- Right side Artist details panel -->
+            <div class="artist-right" *ngIf="showRightDetails">
+                <div class="error" *ngIf="error2">
+                    <p>{{errorMessage2}}</p>
+                </div>
+                <div *ngIf="!error2">
+                    <div class="row">
+                        <div class="pull-left">
+                            <div class="col-xs-12">
+                                <h1>{{artName2}}</h1>
+                            </div><br>
+                            <div class="col-xs-12"> <span><b>Listeners : </b></span>{{artListeners2}}</div><br>
+                            <div class="col-xs-12"> <span><b>Playcount : </b></span>{{artPlaycount2}}</div><br>
+                        </div>
+                        <span class="pull-right">
+                            <img [src]="imgData2" alt="{{artName2}}" class="img-responsive" style="max-height: 150px;">
+                        </span>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-xs-12"><span><b>Summary : </b></span>{{artSummary2}}</div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-xs-12"><span><b>URL : </b></span><a href={{artUrl2}}>{{artUrl2}}</a></div>
+                    </div><br><br>
+                    <div class="row">
                         <div class="col-xs-12">
-                            <h1>{{artName2}}</h1>
-                        </div><br>
-                        <div class="col-xs-12"> <span><b>Listeners : </b></span>{{artListeners2}}</div><br>
-                        <div class="col-xs-12"> <span><b>Playcount : </b></span>{{artPlaycount2}}</div><br>
-                    </div>
-                    <span class="pull-right">
-                        <img [src]="imgData2" alt="{{artName2}}" class="img-responsive" style="max-height: 150px;">
-                    </span>
-                </div><br>
-                <div class="row">
-                    <div class="col-xs-12"><span><b>Summary : </b></span>{{artSummary2}}</div>
-                </div><br>
-                <div class="row">
-                    <div class="col-xs-12"><span><b>URL : </b></span><a href={{artUrl2}}>{{artUrl2}}</a></div>
-                </div><br><br>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div><span><b>Top Albums : </b></span><br><br>
-                            <ul *ngFor="let albumEl of artAlbums2">
-                                <li>{{albumEl}}</li><br>
-                            </ul>
+                            <div><span><b>Top Albums : </b></span><br><br>
+                                <ul *ngFor="let albumEl of artAlbums2">
+                                    <li>{{albumEl}}</li><br>
+                                </ul>
+                            </div>
+                            <div><span><b>Top Tracks : </b></span><br><br>
+                                <ul *ngFor="let trackEl of artTracks2">
+                                    <li>{{trackEl}}</li><br>
+                                </ul>
+                            </div>
                         </div>
-                        <div><span><b>Top Tracks : </b></span><br><br>
-                            <ul *ngFor="let trackEl of artTracks2">
-                                <li>{{trackEl}}</li><br>
-                            </ul>
-                        </div>
-                    </div>
-                </div><br><br>
+                    </div><br><br>
+                </div>
             </div>
         </div>
     </div>

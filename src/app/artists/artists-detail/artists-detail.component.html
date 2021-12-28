@@ -4,7 +4,10 @@
     </div>
 </div>
 <hr>
-<div class="main" style="border: silver solid 1px;padding: 20px;">
+<div *ngIf="isLoading" style="text-align: center;"> <!-- Spinner while data retrieving from API -->
+    <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="main" style="border: silver solid 1px;padding: 20px;" *ngIf="!isLoading"> <!-- Artist details panel -->
     <div class="error" *ngIf="error">
         <p>{{errorMessage}}</p>
     </div>

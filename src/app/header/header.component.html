@@ -3,11 +3,12 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <span class="navbar-brand">
-                <b>MUSIC ARTISTS</b></span>
+                <a style="cursor: pointer;text-decoration: none;" routerLink="/germany" (click)="onClick('Germany')"><b>MUSIC
+                        ARTISTS</b></a></span>
         </div>
-        <div class="navbar-default">
+        <div class="navbar-default"> <!--Navigation bar-->
             <ul class="nav navbar-nav">
-                <li routerLinkActive="active" class="dropdown" appDropdown>
+                <li routerLinkActive="active" class="dropdown" appDropdown> <!--Dropdown with predefined country names-->
                     <a style="cursor: pointer;" class="dropdown-toggle" role="button">{{selectedCountry}}<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -19,12 +20,12 @@
                                 (click)="onClick('India')">India</a></li>
                     </ul>
                 </li>
-                <li routerLinkActive="active">
+                <li routerLinkActive="active"> <!--Side by side navigation-->
                     <a title="side-by-side" routerLink="/side-by-side">
                         <span id="title">SIDE-BY-SIDE</span></a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" style="padding: 10px 0 0 0;"> <!--Search bar in Navigation-->
                 <app-search [artistNames]="dataset"></app-search>
             </ul>
         </div>
