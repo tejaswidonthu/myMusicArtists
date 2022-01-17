@@ -15,7 +15,8 @@ To install the Angular CLI, open a terminal window and run the following command
 
 Navigate to the workspace folder, such as `myMusicArtists`
 
-Run the following command:
-`cd myMusicArtists` then
-`ng serve`
-open your browser Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run the following command:\
+1.Change directory into the repo: `cd myMusicArtists`.\
+2.`npm install` (To Install all packages).\
+3.`ng serve` (To run on the web).\
+4.open your browser Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
